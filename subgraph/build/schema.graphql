@@ -1,0 +1,8 @@
+type LedgerData @entity {
+  id: ID!
+  txCount: BigInt!
+  clientName: Bytes! # address
+  ledgerID: Int! # uint8
+  amount: BigInt! #uint248
+  timestamp: BigInt!   # time of txn
+}

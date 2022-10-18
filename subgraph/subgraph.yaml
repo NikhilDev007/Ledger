@@ -1,0 +1,26 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+features:
+  - nonFatalErrors
+dataSources:
+  - kind: ethereum
+    name: ledger
+    network: mumbai
+    source:
+      address: "0x6fC9E4e88b85B898E94C79DC980814142eE9A737"
+      abi: ledger
+      startBlock: 28682289
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - dataStored
+      abis:
+        - name: ledger
+          file: ./abis/ledger.json
+      eventHandlers:
+        - event: dataStored(indexed address,uint8,uint248)
+          handler: handledataStored
+      file: ./src/ledger.ts

@@ -1,0 +1,74 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_clientName",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "_ledgerID",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint248",
+        "name": "_amount",
+        "type": "uint248"
+      }
+    ],
+    "name": "dataStored",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_clientName",
+        "type": "address"
+      },
+      {
+        "internalType": "uint8",
+        "name": "_ledgerID",
+        "type": "uint8"
+      }
+    ],
+    "name": "getData",
+    "outputs": [
+      {
+        "internalType": "uint248",
+        "name": "",
+        "type": "uint248"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_clientName",
+        "type": "address"
+      },
+      {
+        "internalType": "uint8",
+        "name": "_ledgerID",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint248",
+        "name": "_amount",
+        "type": "uint248"
+      }
+    ],
+    "name": "storeData",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

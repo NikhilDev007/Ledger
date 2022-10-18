@@ -1,0 +1,18 @@
+{
+  "name": "ledger",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ nikhildev007/ledger",
+    "create-local": "graph create --node http://localhost:8020/ nikhildev007/ledger",
+    "remove-local": "graph remove --node http://localhost:8020/ nikhildev007/ledger",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 nikhildev007/ledger",
+    "test": "graph test"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.33.0",
+    "@graphprotocol/graph-ts": "0.27.0"
+  },
+  "devDependencies": { "matchstick-as": "0.5.0" }
+}
