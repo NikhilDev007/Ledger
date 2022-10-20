@@ -1,20 +1,20 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import fetch from 'cross-fetch';
-import { Repository } from 'typeorm';
-import { CredentNewDto } from './dto/stackDto.dto';
-import { CredentNew } from './entity/ledger.entity';
+import { InputData } from './interface/subgraph.interface';
+import { CRED } from './ledger.entity';
 
 @Injectable()
 export class LedgerService {
   private readonly graphBaseUrl: string;
   constructor() {
     this.graphBaseUrl =
-      'https://api.thegraph.com/subgraphs/name/nikhildev007/ledger';
+      'https://api.thegraph.com/subgraphs/name/nikhildev007/ledger'
   }
 
-
-  async fetchLedgerData(): Promise<any> {
+  /**
+   * @notice used in controller to query data from subgraph
+   */
+   async fetchLedgerData(): Promise<any> {
     // query ledger data from the subgraph
     const ledgerDataQuery = {
       query: `
@@ -48,17 +48,27 @@ export class LedgerService {
     return ledgerData;
   }
 
-
-  async createCredentNewStack(credentialDto: CredentNewDto): Promise<any> {
-    const { userAddress , userID, amount }  = credentialDto;
-
-    const credential = new CredentNew();
-    credential.userAddress = userAddress;
-    credential.userID = userID;
-    credential.amount = amount;
-    
-    return [credential.userAddress, true];
+  /**
+   * @notice to check the return variable is array or not
+   * @returns true: for array otherwise false.
+   */
+  checkArray(array): boolean {
+    return Array.isArray(array) && array.length ? true : false;
   }
 
+  /**
+   * @notice function used to store data manually in database.
+   */
+  async createCredentNewStack(subgraphData: CRED): Promise<CRED> {
+    const { id, userAddress, userID, amount } = subgraphData;
+
+    const info = new CRED();
+    info.id = id;
+    info.userAddress = userAddress;
+    info.userID = userID;
+    info.amount = amount;
+    await info.save();
+    return info;
+  }
 
 }
