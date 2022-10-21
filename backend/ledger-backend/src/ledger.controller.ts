@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Redirect } from '@nestjs/common';
 import { InputData } from './interface/subgraph.interface';
 import { CRED } from './ledger.entity';
 import { LedgerService } from './ledger.service';
@@ -23,4 +23,16 @@ export class LedgerController {
   createCredentNewStack(@Body() credentialDto: CRED): Promise<any> {
     return this.ledgerService.createCredentNewStack(credentialDto)
   }
+
+ 
+  // route to redirect to the page of particular wapsite
+  @Get('/docs')
+  @Redirect('https://nestjs.com', 302)
+  getDocs(@Query('version') version: number) {
+    if (version == 5) {
+      return { url: 'https://docs.nestjs.com/v5/' };
+    }
+  }
+
+  
 }
